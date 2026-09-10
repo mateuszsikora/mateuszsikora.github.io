@@ -271,62 +271,101 @@
 
     /* ── projects ── */
     .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-      width: min(29rem, 84vw);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.2rem;
+      width: min(46rem, 88vw);
       animation: reveal .8s cubic-bezier(.16, 1, .3, 1) .6s both;
     }
 
-    .project__head {
-      display: flex;
-      align-items: baseline;
-      gap: .5rem 1rem;
+    .p-col { display: flex; flex-direction: column; gap: .5rem; }
+
+    .p-col {
+      position: relative;
+      padding-top: 1rem;
     }
 
-    .project__name {
-      font-size: .7rem;
+    .p-col::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, oklch(72% .18 280 / .28), transparent 85%);
+      transition: background .4s;
+    }
+
+    .p-col:hover::before {
+      background: linear-gradient(90deg, var(--glow-1), transparent 85%);
+    }
+
+    .p-meta {
+      font-size: .52rem;
+      letter-spacing: .16em;
+      color: color-mix(in oklch, var(--dim-readable), transparent 30%);
+    }
+
+    .p-index {
+      font-size: .5rem;
+      letter-spacing: .2em;
+      color: color-mix(in oklch, var(--dim), transparent 15%);
+    }
+
+    .projects-label {
+      grid-column: 1 / -1;
+      font-size: .55rem;
+      letter-spacing: .18em;
+      color: color-mix(in oklch, var(--dim), transparent 10%);
+      margin-bottom: -.6rem;
+    }
+
+
+
+    .p-name {
+      position: relative;
+      align-self: start;
+      font-size: .68rem;
       letter-spacing: .12em;
       color: color-mix(in oklch, var(--text), transparent 25%);
-    }
-
-    .project__links {
-      display: flex;
-      gap: 1rem;
-      padding-left: .4rem;
-    }
-
-    .project__links a {
-      position: relative;
-      font-size: .6rem;
-      letter-spacing: .12em;
-      color: var(--dim-readable);
       text-decoration: none;
       transition: color .3s;
     }
 
-    .project__links a::after {
+    .p-name::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: -3px;
+      bottom: -4px;
       width: 0;
       height: 1px;
       background: linear-gradient(90deg, var(--glow-1), transparent);
       transition: width .3s;
     }
+    .p-name:hover { color: var(--text); }
+    .p-name:hover::after { width: 100%; }
 
-    .project__links a:hover { color: var(--text); }
-    .project__links a:hover::after { width: 100%; }
-
-    .project__desc {
-      margin-top: .35rem;
-      font-size: .62rem;
-      line-height: 1.6;
-      letter-spacing: .08em;
+    .p-desc {
+      font-size: .58rem;
+      line-height: 1.7;
+      letter-spacing: .06em;
       color: var(--dim-readable);
     }
 
+    .p-site {
+      position: relative;
+      align-self: start;
+      font-size: .55rem;
+      letter-spacing: .12em;
+      color: color-mix(in oklch, var(--dim-readable), transparent 25%);
+      text-decoration: none;
+      transition: color .3s;
+    }
+    .p-site:hover { color: var(--text); }
+
+    @media (max-width: 640px) {
+      .projects { grid-template-columns: 1fr; gap: 1.3rem; }
+    }
 
     /* ── structural lines ── */
     .h-lines {
@@ -446,34 +485,26 @@
   </nav>
 
     <section class="projects" aria-label="Projects">
-      <article class="project">
-        <div class="project__head">
-          <span class="project__name">slate</span>
-          <span class="project__links">
-            <a href="https://github.com/mateuszsikora/slate" target="_blank" rel="noopener noreferrer">code</a>
-            <a href="https://no-plan.dev/slate/" target="_blank" rel="noopener noreferrer">site</a>
-          </span>
-        </div>
-        <p class="project__desc">ESP32-S3 wall panel that draws its dashboard from JSON</p>
-      </article>
-      <article class="project">
-        <div class="project__head">
-          <span class="project__name">glance</span>
-          <span class="project__links">
-            <a href="https://github.com/mateuszsikora/glance" target="_blank" rel="noopener noreferrer">code</a>
-          </span>
-        </div>
-        <p class="project__desc">old Android tablet -> always-on Home Assistant screen</p>
-      </article>
-      <article class="project">
-        <div class="project__head">
-          <span class="project__name">esphome-homewhiz</span>
-          <span class="project__links">
-            <a href="https://github.com/mateuszsikora/esphome-homewhiz" target="_blank" rel="noopener noreferrer">code</a>
-          </span>
-        </div>
-        <p class="project__desc">Beko / Grundig appliances in ESPHome over Bluetooth</p>
-      </article>
+      <p class="projects-label">// smart home</p>
+      <div class="p-col">
+        <span class="p-index">01</span>
+        <a class="p-name" href="https://github.com/mateuszsikora/slate" target="_blank" rel="noopener noreferrer" aria-label="slate on GitHub">slate</a>
+        <p class="p-meta">firmware &middot; C</p>
+        <p class="p-desc">ESP32-S3 wall panel that draws its dashboard from JSON</p>
+        <a class="p-site" href="https://no-plan.dev/slate/" target="_blank" rel="noopener noreferrer">site &#8599;</a>
+      </div>
+      <div class="p-col">
+        <span class="p-index">02</span>
+        <a class="p-name" href="https://github.com/mateuszsikora/glance" target="_blank" rel="noopener noreferrer" aria-label="glance on GitHub">glance</a>
+        <p class="p-meta">app &middot; Kotlin</p>
+        <p class="p-desc">old Android tablet -&gt; always-on Home Assistant screen</p>
+      </div>
+      <div class="p-col">
+        <span class="p-index">03</span>
+        <a class="p-name" href="https://github.com/mateuszsikora/esphome-homewhiz" target="_blank" rel="noopener noreferrer" aria-label="esphome-homewhiz on GitHub">esphome-homewhiz</a>
+        <p class="p-meta">integration &middot; Python</p>
+        <p class="p-desc">Beko / Grundig appliances in ESPHome over Bluetooth</p>
+      </div>
     </section>
   </main>
 
