@@ -7,6 +7,7 @@
   <meta name="description" content="Mateusz Sikora — local-first smart home projects: ESP32 wall panels, Android kiosks, ESPHome components.">
   <link rel="canonical" href="https://no-plan.dev/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://no-plan.dev/">
@@ -45,6 +46,7 @@
       --bg: #05050a;
       --text: #e8e8ef;
       --dim: #5a5a72;
+      --dim-readable: #8080a0;
       --glow-1: oklch(72% .18 280);
       --glow-2: oklch(75% .16 175);
       --glow-3: oklch(70% .15 230);
@@ -296,9 +298,9 @@
 
     .project__links a {
       position: relative;
-      font-size: .55rem;
+      font-size: .6rem;
       letter-spacing: .12em;
-      color: color-mix(in oklch, var(--dim), transparent 15%);
+      color: var(--dim-readable);
       text-decoration: none;
       transition: color .3s;
     }
@@ -319,10 +321,10 @@
 
     .project__desc {
       margin-top: .35rem;
-      font-size: .55rem;
+      font-size: .62rem;
       line-height: 1.6;
       letter-spacing: .08em;
-      color: color-mix(in oklch, var(--dim), transparent 25%);
+      color: var(--dim-readable);
     }
 
 
